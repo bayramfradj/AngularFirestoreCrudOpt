@@ -8,22 +8,24 @@
 
         <div class="form-group">
             <input required name="fullname" #fullname="ngModel" minlength="15" [(ngModel)]="employeeService.formData.fullname" class="form-control" placeholder="Full Name">
-            <small  class="form-text text-muted" *ngIf="fullname.invalid && fullname.touched && fullname.value.length == 0">This field is required</small>
-            <small  class="form-text text-muted" *ngIf="fullname.invalid && fullname.touched && fullname.value.length < 15">Min length is 15 char</small>
+            <small  class="form-text text-muted" *ngIf="fullname.invalid && fullname.touched && fullname.value.length == 0"><sup>*</sup>This field is required</small>
+            <small  class="form-text text-muted" *ngIf="fullname.invalid && fullname.touched && fullname.value.length < 15"><sup>*</sup>Min length is 15 char</small>
 
         </div>
         <div class="form-group">
             <input required name="position" #position="ngModel" [(ngModel)]="employeeService.formData.position" class="form-control" placeholder="Position">
-            <small  class="form-text text-muted" *ngIf="position.invalid && position.touched">This field is required</small>
+            <small  class="form-text text-muted" *ngIf="position.invalid && position.touched"><sup>*</sup>This field is required</small>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <input required name="empCode" #empCode="ngModel" [(ngModel)]="employeeService.formData.empCode" class="form-control" placeholder="Employee Code">
-                <small  class="form-text text-muted" *ngIf="empCode.invalid && empCode.touched">This field is required</small>
+                <select name="empCode" class="form-control" [(ngModel)]="employeeService.formData.empCode" >
+                    <option *ngFor="let option of employeeService.options" [value]="option"  >{{option}}</option>
+                </select>
+                
             </div>
             <div class="form-group col-md-6">
                 <input required name="mobile" type="tel" #mobile="ngModel" [(ngModel)]="employeeService.formData.mobile" class="form-control" placeholder="Mobile">
-                <small  class="form-text text-muted" *ngIf="mobile.invalid && mobile.touched">This field is required</small>
+                <small  class="form-text text-muted" *ngIf="mobile.invalid && mobile.touched"><sup>*</sup>This field is required</small>
 
             </div>
         </div>

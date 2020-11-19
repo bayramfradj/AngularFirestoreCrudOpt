@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Toast, ToastrService } from 'ngx-toastr';
+import {  ToastrService } from 'ngx-toastr';
 import { EmployeeService } from '../shared/employee.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { EmployeeService } from '../shared/employee.service';
 export class EmployeeComponent implements OnInit {
 
   load: boolean;
+  
   constructor(public employeeService: EmployeeService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -26,7 +27,7 @@ export class EmployeeComponent implements OnInit {
       }
       this.employeeService.formData = {
         id: null,
-        empCode: '',
+        empCode: 'AA',
         fullname: '',
         mobile: '',
         position: ''
@@ -41,18 +42,20 @@ export class EmployeeComponent implements OnInit {
       this.employeeService.Save()
       .then(() => {
           this.load = false;
-          this.toastr.success('Submitted successfully', 'Employee Register',{'progressBar':true});
+          this.toastr.success('Submitted successfully', 'Employee Register',{ 'progressBar' : true});
       });
     }
     else
     {
       this.employeeService.update().then(() => {
         this.load = false;
-        this.toastr.success('Updated successfully', 'Employee Register',{'progressBar':true});
+        this.toastr.success('Updated successfully', 'Employee Register',{'progressBar': true});
         this.employeeService.loadData();
     });
     }
     this.resetForm();
   }
+
+ 
 
 }

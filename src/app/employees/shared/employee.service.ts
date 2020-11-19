@@ -8,7 +8,8 @@ import { Employee } from './employee';
 export class EmployeeService {
   formData: Employee;
   list: Employee[];
-  constructor(private firestore: AngularFirestore) { 
+  options: string[] = ["AA", "AB", "AC"];
+  constructor(private firestore: AngularFirestore) {
     this.loadData();
   }
 
@@ -24,9 +25,10 @@ export class EmployeeService {
 
   }
   Save()
-  {   let data = Object.assign({}, this.formData);
-      delete data.id;
-      return this.firestore.collection('employees').add(data);
+  {
+     let data = Object.assign({}, this.formData);
+     delete data.id;
+     return this.firestore.collection('employees').add(data);
   }
 
   update()
@@ -36,6 +38,9 @@ export class EmployeeService {
     return this.firestore.doc('employees/' + this.formData.id).update(data);
   }
 
-  
+  delete(id: string)
+  {
+    return this.firestore.doc('employees/'+id).delete();
+  }
 
 }
