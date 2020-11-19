@@ -36,13 +36,23 @@ export class EmployeeComponent implements OnInit {
   onSubmit()
   {
     this.load = true;
-    this.employeeService.Save()
-    .then(() => {
-        this.resetForm();
+    if (this.employeeService.formData.id == null)
+    {
+      this.employeeService.Save()
+      .then(() => {
+          this.load = false;
+          this.toastr.success('Submitted successfully', 'Employee Register',{'progressBar':true});
+      });
+    }
+    else
+    {
+      this.employeeService.update().then(() => {
         this.load = false;
-        this.toastr.success('Submitted successfully', 'Employee Register');
+        this.toastr.success('Updated successfully', 'Employee Register',{'progressBar':true});
+        this.employeeService.loadData();
     });
-
+    }
+    this.resetForm();
   }
 
 }

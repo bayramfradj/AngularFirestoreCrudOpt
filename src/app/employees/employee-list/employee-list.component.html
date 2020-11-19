@@ -1,1 +1,19 @@
-<p>employee-list works!</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Position</th>
+           
+            <th>Mobile</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let e of serviceEmp.list" >
+            <td (click)="onEdit(e)">{{e.empCode}} - {{e.fullname}}</td>
+            <td (click)="onEdit(e)">{{e.position}}</td>
+            <td (click)="onEdit(e)">{{e.mobile}}</td>
+            <td><a class="btn txt-danger" (click)="onDelete(e)"><i class="fa fa-trash"></i></a></td>
+        </tr>
+    </tbody>
+</table>
